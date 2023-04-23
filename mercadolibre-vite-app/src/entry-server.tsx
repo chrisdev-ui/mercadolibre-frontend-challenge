@@ -1,7 +1,7 @@
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 
-import Router from './Router';
+import Router from '@/Router';
 
 interface IRenderProps {
   path: string;
