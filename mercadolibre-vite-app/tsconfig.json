@@ -13,6 +13,20 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*", "./dist/*", ""],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@types/*": ["src/@types/*"],
+      "@constants/*": ["src/common/constants/*"],
+      "@styles/*": ["src/common/styles/*"],
+      "@utils/*": ["src/common/utils/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
