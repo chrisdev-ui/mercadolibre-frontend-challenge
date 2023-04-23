@@ -27,6 +27,17 @@ const bootstrap = async () => {
     );
   }
 
+  app.use('/api/v1', (_, res) => {
+    try {
+      res.status(200).json({
+        project: 'MercadoLibre app',
+        from: 'Christian Torres',
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
     let template, render;
