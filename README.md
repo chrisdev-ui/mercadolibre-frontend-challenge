@@ -1,6 +1,6 @@
 # Project Documentation: Mercadolibre Vite App
 
-## ¿Por qué elegimos Vite como entorno de construcción para nuestra aplicación web?
+## ¿Por qué elegimos Vite como entorno de construcción para esta aplicación web?
 
 [Vite](https://vitejs.dev/guide/) es un entorno de construcción rápido y liviano para aplicaciones web modernas. Se utiliza en este proyecto para compilar y empaquetar el código fuente del lado del cliente y del lado del servidor. Además, Vite tiene integración con React y otros frameworks populares, lo que lo hace una buena opción para aplicaciones modernas de una sola página (SPA) que requieren un tiempo de construcción rápido y un proceso de desarrollo ágil.
 
