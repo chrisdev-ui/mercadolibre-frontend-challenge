@@ -73,6 +73,40 @@ const bootstrap = async () => {
     }
   });
 
+  app.get('/api/items/:id', async (req, res, next) => {
+    try {
+      const { id: itemId } = req.params;
+      const url = MERCADOLIBRE_API.concat('items/', itemId);
+      const descriptionUrl = url.concat('/description');
+      const categoriesUrl = MERCADOLIBRE_API.concat('categories/');
+      const { data: itemData } = await axios.get(url);
+      const { data: descriptionData } = await axios.get(descriptionUrl);
+      const { data: categoriesData } = await axios.get(categoriesUrl.concat(itemData?.category_id));
+      const author = {
+        name: AUTHOR_NAME,
+        lastname: AUTHOR_LASTNAME,
+      };
+      const item = {
+        id: itemData.id,
+        title: itemData.title,
+        price: {
+          currency: itemData.currency_id,
+          amount: Math.floor(itemData.price),
+          decimals: 2,
+        },
+        picture: itemData.thumbnail,
+        condition: itemData.condition,
+        free_shipping: itemData.shipping.free_shipping,
+        sold_quantity: itemData.sold_quantity,
+        description: descriptionData.plain_text,
+        categories: categoriesData.path_from_root?.map((category) => category.name),
+      };
+      res.status(200).json({ author, item });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
     let template, render;
