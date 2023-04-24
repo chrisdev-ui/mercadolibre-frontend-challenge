@@ -1,4 +1,5 @@
 /* eslint-env node */
+import axios from 'axios';
 import express from 'express';
 import fs from 'fs';
 import { listen } from 'listhen';
@@ -6,6 +7,11 @@ import path from 'path';
 import sirv from 'sirv';
 import { createServer as createViteServer } from 'vite';
 
+// This should be as env variable but I don't want to add more complexity to exercise
+const MERCADOLIBRE_API = 'https://api.mercadolibre.com/';
+const CATEGORY_TYPE = 'category';
+const AUTHOR_NAME = 'Christian';
+const AUTHOR_LASTNAME = 'Torres ®';
 const DEV_ENV = 'development';
 
 const bootstrap = async () => {
@@ -27,12 +33,41 @@ const bootstrap = async () => {
     );
   }
 
-  app.use('/api/v1', (_, res) => {
+  app.get('/api/items', async (req, res, next) => {
     try {
-      res.status(200).json({
-        project: 'MercadoLibre app',
-        from: 'Christian Torres',
-      });
+      const { q } = req.query;
+      const url = MERCADOLIBRE_API.concat('sites/MLA/', `search?q=${q}`, '&limit=4');
+      const categoriesUrl = MERCADOLIBRE_API.concat('categories/');
+      const { data } = await axios.get(url);
+      const responseData = {};
+      responseData.items = data?.results.map((result) => ({
+        id: result.id,
+        title: result.title,
+        price: {
+          currency: result.currency_id,
+          amount: Math.floor(result.price),
+          decimals: result.price % 1 ? 2 : 0,
+        },
+        picture: result.thumbnail,
+        condition: result.condition,
+        free_shipping: result.shipping.free_shipping,
+      }));
+      if (data?.results[0].category_id) {
+        const url = categoriesUrl.concat(data?.results[0].category_id);
+        const { data: categoriesData } = await axios.get(url);
+        responseData.categories = categoriesData.path_from_root?.map((category) => category.name);
+      } else {
+        const categoryId = data?.available_filters.find((filter) => filter.id === CATEGORY_TYPE)
+          ?.values[0].id;
+        const url = categoriesUrl.concat(categoryId);
+        const { data: categoriesData } = await axios.get(url);
+        responseData.categories = categoriesData.path_from_root?.map((category) => category.name);
+      }
+      responseData.author = {
+        name: AUTHOR_NAME,
+        lastname: AUTHOR_LASTNAME,
+      };
+      res.status(200).json(responseData);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
