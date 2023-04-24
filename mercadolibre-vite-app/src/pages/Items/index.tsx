@@ -1,5 +1,6 @@
 import BreadCrumb from '@components/BreadCrumb/BreadCrumb';
 import Item from '@components/Item/Item';
+import Loader from '@components/Loader/Loader';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -54,8 +55,8 @@ const Items: React.FC = () => {
     return <div>{errors.message}</div>;
   }
 
-  if (isLoading && !items && !categories) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

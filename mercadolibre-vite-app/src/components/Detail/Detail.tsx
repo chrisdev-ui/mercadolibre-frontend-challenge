@@ -4,7 +4,14 @@ import { formatCurrency } from '@utils/currency';
 import { DetailConstants } from '@/types/enums';
 import styles from './Detail.module.scss';
 
-const Detail = ({ title, picture, condition, sold_quantity, price, description }: ItemInfo) => {
+const Detail: React.FC<ItemInfo> = ({
+  title,
+  picture,
+  condition,
+  sold_quantity,
+  price,
+  description,
+}: ItemInfo) => {
   const { conditionNew, sold, newText, buy, descTitle } = DetailConstants;
   const conditionText = () => condition === conditionNew && newText;
   const [integerPart, decimalPart] = formatCurrency(price).split(',');

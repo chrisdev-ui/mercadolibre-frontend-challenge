@@ -1,5 +1,6 @@
 import BreadCrumb from '@components/BreadCrumb/BreadCrumb';
 import Detail from '@components/Detail/Detail';
+import Loader from '@components/Loader/Loader';
 import { Author } from '@pages/Items';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -51,7 +52,7 @@ const ItemDetails: React.FC = () => {
   }
 
   if (isLoading && !itemInfo) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
