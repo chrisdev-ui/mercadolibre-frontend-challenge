@@ -4,9 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 // Import root layout
 import RootLayout from '@/RootLayout';
 // Import pages
-import Items from '@/pages/Items/index';
-import Home from '@pages/Home/index';
-import NotFound from '@pages/NotFound/index';
+import Items from '@/pages/Items';
+import Home from '@pages/Home';
+import NotFound from '@pages/NotFound';
 
 const Router: React.FC = () => {
   return (
