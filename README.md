@@ -129,51 +129,69 @@ Mas información sobre como hacer deploy de la aplicación en producción [Vite 
 
 ### Dependencias
 
-`axios`: Cliente HTTP para hacer peticiones a APIs.
-`express`: Framework de Node.js para manejar peticiones HTTP.
-`listhen`: Biblioteca para manejar eventos de forma asíncrona.
-`react`: Biblioteca de JavaScript para crear interfaces de usuario.
-`react-dom`: Biblioteca de JavaScript para manipular el DOM en React.
-`react-router-dom`: Biblioteca para manejar el enrutamiento en una aplicación de React.
-`react-toastify`: Biblioteca para mostrar notificaciones en una aplicación de React.
-`sirv`: Biblioteca para servir archivos estáticos.
+- `axios`: Cliente HTTP para hacer peticiones a APIs.
+- `express`: Framework de Node.js para manejar peticiones HTTP.
+- `listhen`: Biblioteca para manejar eventos de forma asíncrona.
+- `react`: Biblioteca de JavaScript para crear interfaces de usuario.
+- `react-dom`: Biblioteca de JavaScript para manipular el DOM en React.
+- `react-router-dom`: Biblioteca para manejar el enrutamiento en una aplicación de React.
+- `react-toastify`: Biblioteca para mostrar notificaciones en una aplicación de React.
+- `sirv`: Biblioteca para servir archivos estáticos.
 
 ### Dependencias de desarrollo
 
-`@testing-library/jest-dom`: Biblioteca de pruebas para Jest.
-`@testing-library/react`: Biblioteca de pruebas para React.
-`@testing-library/user-event`: Biblioteca para simular eventos del usuario en pruebas de React.
-`@types/node`: Tipos para Node.js.
-`@types/react`: Tipos para React.
-`@types/react-dom`: Tipos para React DOM.
-`@typescript-eslint/eslint-plugin`: Plugin de ESLint para TypeScript.
-`@typescript-eslint/parser`: Parser de ESLint para TypeScript.
-`@vitejs/plugin-react`: Plugin de Vite para React.
-`@vitest/coverage-c8`: Plugin de Vitest para generar reportes de cobertura.
-`@vitest/ui`: Interfaz gráfica para Vitest.
-`eslint`: Herramienta para detectar errores de sintaxis y estilo de código.
-`eslint-plugin-react`: Plugin de ESLint para React.
-`eslint-plugin-react-hooks`: Plugin de ESLint para detectar problemas comunes con los hooks de React.
-`eslint-plugin-react-refresh`: Plugin de ESLint para el modo de recarga rápida de React.
-`happy-dom`: Biblioteca para emular el DOM en pruebas.
-`prettier`: Herramienta para formatear código.
-`sass`: Preprocesador de CSS.
-`typescript`: Superset de JavaScript que agrega tipos estáticos opcionales.
-`vite`: Build tool para aplicaciones de JavaScript.
-`vitest`: Framework de pruebas para aplicaciones de JavaScript.
+- `@testing-library/jest-dom`: Biblioteca de pruebas para Jest.
+- `@testing-library/react`: Biblioteca de pruebas para React.
+- `@testing-library/user-event`: Biblioteca para simular eventos del usuario en pruebas de React.
+- `@types/node`: Tipos para Node.js.
+- `@types/react`: Tipos para React.
+- `@types/react-dom`: Tipos para React DOM.
+- `@typescript-eslint/eslint-plugin`: Plugin de ESLint para TypeScript.
+- `@typescript-eslint/parser`: Parser de ESLint para TypeScript.
+- `@vitejs/plugin-react`: Plugin de Vite para React.
+- `@vitest/coverage-c8`: Plugin de Vitest para generar reportes de cobertura.
+- `@vitest/ui`: Interfaz gráfica para Vitest.
+- `eslint`: Herramienta para detectar errores de sintaxis y estilo de código.
+- `eslint-plugin-react`: Plugin de ESLint para React.
+- `eslint-plugin-react-hooks`: Plugin de ESLint para detectar problemas comunes con los hooks de React.
+- `eslint-plugin-react-refresh`: Plugin de ESLint para el modo de recarga rápida de React.
+- `happy-dom`: Biblioteca para emular el DOM en pruebas.
+- `prettier`: Herramienta para formatear código.
+- `sass`: Preprocesador de CSS.
+- `typescript`: Superset de JavaScript que agrega tipos estáticos opcionales.
+- `vite`: Build tool para aplicaciones de JavaScript.
+- `vitest`: Framework de pruebas para aplicaciones de JavaScript.
 
 ### Proyecto
 
+- .vscode
+- coverage
+- public
 - dist/
   - client/
   - server/
 - src/
+  - assets/
+  - common/
+    - constants/
+    - styles/
+    - utils/
   - components/
+    - BreadCrumb/
+    - Detail/
+    - Item/
+    - Loader/
+    - Searchbox/
   - pages/
-  - utils/
-  - App.tsx
+    - Home/
+    - ItemDetails/
+    - Items/
+    - NotFound/
+  - RootLayout.tsx
+  - index.scss
   - entry-client.tsx
   - entry-server.tsx
+  - Router.tsx
 - .prettierrc
 - .eslintrc.json
 - package.json
