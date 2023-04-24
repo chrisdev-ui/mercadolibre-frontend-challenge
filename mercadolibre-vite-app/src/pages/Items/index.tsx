@@ -34,7 +34,6 @@ const Items = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`http://localhost:3333/api/items?q=${searchQuery}`);
-
         const { author, categories, items } = data || {};
         setAuthor(author);
         setCategories(categories);
@@ -48,11 +47,11 @@ const Items = () => {
 
   return (
     <>
-      <BreadCrumb />
+      <BreadCrumb categories={categories} />
       <div className={styles.container}>
-        {items.map(({ id, title, price, picture, condition, free_shipping }, index) => (
+        {items?.map(({ id, title, price, picture, condition, free_shipping }) => (
           <Item
-            key={index}
+            key={id}
             id={id}
             title={title}
             price={price}
@@ -62,6 +61,7 @@ const Items = () => {
           />
         ))}
       </div>
+      <footer>{`${author?.name} ${author?.lastname}`}</footer>
     </>
   );
 };
