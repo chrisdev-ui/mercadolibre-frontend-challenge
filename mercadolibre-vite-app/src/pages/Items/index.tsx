@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styles from './index.module.scss';
 
-type Author = {
+export type Author = {
   name: string;
   lastname: string;
 };
@@ -27,6 +27,8 @@ const Items: React.FC = () => {
   const [author, setAuthor] = useState<Author>({ name: '', lastname: '' });
   const [categories, setCategories] = useState<string[]>([]);
   const [items, setItems] = useState<ItemType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [errors, setErrors] = useState<Error | null | undefined>();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search');
 
@@ -38,12 +40,23 @@ const Items: React.FC = () => {
         setAuthor(author);
         setCategories(categories);
         setItems(items);
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
+        setErrors(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
   }, [searchQuery]);
+
+  if (errors) {
+    return <div>{errors.message}</div>;
+  }
+
+  if (isLoading && !items && !categories) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
