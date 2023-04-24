@@ -23,7 +23,7 @@ export type ItemType = {
   free_shipping: boolean;
 };
 
-const Items = () => {
+const Items: React.FC = () => {
   const [author, setAuthor] = useState<Author>({ name: '', lastname: '' });
   const [categories, setCategories] = useState<string[]>([]);
   const [items, setItems] = useState<ItemType[]>([]);

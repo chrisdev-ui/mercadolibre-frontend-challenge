@@ -4,12 +4,13 @@ type Props = {
   categories: string[];
 };
 
-const BreadCrumb = ({ categories }: Props) => {
+const BreadCrumb: React.FC<Props> = ({ categories }: Props) => {
   return (
-    <div className={styles.breadcrumb_container}>
+    <div data-testid='breadcrumb_container' className={styles.breadcrumb_container}>
       {categories?.map((category, index, categoriesArray) => (
         <span
           key={`${category}${index}`}
+          data-testid='breadcrumb_span'
           className={index === categoriesArray.length - 1 ? styles.bold : ''}
         >
           {category}{' '}

@@ -9,12 +9,12 @@ import styles from './Item.module.scss';
 const Item = ({ id, title, price, picture, condition, free_shipping }: ItemType) => {
   const [loading, setLoading] = useState<boolean>(true);
   return (
-    <Link className={styles.link_wrapper} to={`${itemByIdUrl}${id}`}>
+    <Link data-testid='item-link' className={styles.link_wrapper} to={`${itemByIdUrl}${id}`}>
       <div className={styles.item_container} id={id}>
         <img
           className={styles.thumbnail}
           src={placeholderImg}
-          alt={title}
+          alt={`${title}_placeholder`}
           style={loading ? {} : { display: 'none' }}
         />
         <img
