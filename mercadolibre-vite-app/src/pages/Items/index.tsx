@@ -3,7 +3,7 @@ import Item from '@components/Item/Item';
 import Loader from '@components/Loader/Loader';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './index.module.scss';
 
 export type Author = {
@@ -31,6 +31,7 @@ const Items: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errors, setErrors] = useState<Error | null | undefined>();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const searchQuery = searchParams.get('search');
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const Items: React.FC = () => {
   }, [searchQuery]);
 
   if (errors) {
-    return <div>{errors.message}</div>;
+    navigate('/500');
   }
 
   if (isLoading) {

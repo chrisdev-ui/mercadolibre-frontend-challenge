@@ -4,7 +4,7 @@ import Loader from '@components/Loader/Loader';
 import { Author } from '@pages/Items';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './index.module.scss';
 
 export type ItemInfo = {
@@ -28,6 +28,7 @@ const ItemDetails: React.FC = () => {
   const [itemInfo, setItemInfo] = useState<ItemInfo>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errors, setErrors] = useState<Error | null | undefined>();
+  const navigate = useNavigate();
   const { id: itemId } = useParams();
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const ItemDetails: React.FC = () => {
   }, [itemId]);
 
   if (errors) {
-    return <div>{errors.message}</div>;
+    navigate('/500');
   }
 
   if (isLoading && !itemInfo) {
